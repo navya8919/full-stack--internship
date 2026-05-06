@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Day 4 JavaScript Project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>JavaScript Control Structures</h1>
+
+    <!-- Multiplication Table -->
+    <div class="card">
+        <h2>Multiplication Table</h2>
+        <input type="number" id="tableNum" placeholder="Enter number">
+        <button onclick="printTable()">Generate</button>
+        <pre id="tableResult"></pre>
+    </div>
+
+    <!-- Prime Check -->
+    <div class="card">
+        <h2>Prime Number Checker</h2>
+        <input type="number" id="primeNum" placeholder="Enter number">
+        <button onclick="checkPrime()">Check</button>
+        <p id="primeResult"></p>
+    </div>
+
+    <!-- Sum -->
+    <div class="card">
+        <h2>Sum (1 to 100)</h2>
+        <button onclick="calculateSum()">Calculate</button>
+        <p id="sumResult"></p>
+    </div>
+
+    <!-- Guess Game -->
+    <div class="card">
+        <h2>Number Guessing Game 🎮</h2>
+        <p>Guess a number between 1 and 10</p>
+        <input type="number" id="guessInput">
+        <button onclick="checkGuess()">Guess</button>
+        <p id="gameResult"></p>
+        <p id="attemptsLeft"></p>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
