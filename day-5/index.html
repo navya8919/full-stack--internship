@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 5 - Functions & Scope</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Day 5 – JavaScript Functions</h1>
+
+    <!-- Factorial -->
+    <div class="card">
+        <h2>Factorial</h2>
+        <input type="number" id="factorialNum" placeholder="Enter number">
+        <button onclick="findFactorial()">Calculate</button>
+        <p id="factorialResult"></p>
+    </div>
+
+    <!-- Reverse String -->
+    <div class="card">
+        <h2>Reverse String</h2>
+        <input type="text" id="reverseText" placeholder="Enter text">
+        <button onclick="reverseText()">Reverse</button>
+        <p id="reverseResult"></p>
+    </div>
+
+    <!-- Palindrome -->
+    <div class="card">
+        <h2>Palindrome Checker</h2>
+        <input type="text" id="palindromeText" placeholder="Enter text">
+        <button onclick="checkPalindrome()">Check</button>
+        <p id="palindromeResult"></p>
+    </div>
+
+    <!-- To-Do List -->
+    <div class="card">
+        <h2>To-Do List</h2>
+
+        <input type="text" id="taskInput" placeholder="Enter task">
+        <button onclick="addTask()">Add Task</button>
+
+        <ul id="taskList"></ul>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
