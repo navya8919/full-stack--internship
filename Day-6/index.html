@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Manipulation</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>DOM Manipulation & Events</h1>
+
+    <!-- ========================= -->
+    <!-- Counter App -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <h2>Counter App</h2>
+
+        <h3 id="counter">0</h3>
+
+        <button onclick="increase()">+</button>
+        <button onclick="decrease()">-</button>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Live Image Gallery -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <h2>Image Gallery</h2>
+
+        <!-- Main Image -->
+        <img id="mainImage"
+             src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=800"
+             alt="Nature Image"
+             class="main-img">
+
+        <!-- Thumbnail Images -->
+        <div class="gallery">
+
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=200"
+                 onclick="changeImage(this.src)"
+                 alt="Mountain Image">
+
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=200"
+                 onclick="changeImage(this.src)"
+                 alt="Forest Image">
+
+            <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=200"
+                 onclick="changeImage(this.src)"
+                 alt="Beach Image">
+
+            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=200"
+                 onclick="changeImage(this.src)"
+                 alt="Waterfall Image">
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- To-Do List -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <h2>Interactive To-Do List</h2>
+
+        <input id="taskInput"
+               type="text"
+               placeholder="Enter task">
+
+        <button id="addBtn">Add Task</button>
+
+        <button id="clearBtn">Clear All</button>
+
+        <ul id="taskList"></ul>
+
+    </div>
+
+
+    <!-- ========================= -->
+    <!-- Character Counter -->
+    <!-- ========================= -->
+
+    <div class="card">
+
+        <h2>Character Counter</h2>
+
+        <textarea id="textArea"
+                  rows="5"
+                  placeholder="Type something..."></textarea>
+
+        <p id="charCount">0 / 280 characters</p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
