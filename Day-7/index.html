@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript Assignments</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>JavaScript Assignments</h1>
+
+    <!-- Even Numbers -->
+    <div class="card">
+        <h2>Even Numbers using filter()</h2>
+
+        <button onclick="showEvenNumbers()">
+            Show Even Numbers
+        </button>
+
+        <p id="evenResult"></p>
+    </div>
+
+
+    <!-- Laptop Object -->
+    <div class="card">
+        <h2>Laptop Object</h2>
+
+        <button onclick="showLaptopDetails()">
+            Show Laptop Details
+        </button>
+
+        <p id="laptopResult"></p>
+    </div>
+
+
+    <!-- Marks Analysis -->
+    <div class="card">
+        <h2>Marks Analysis</h2>
+
+        <button onclick="analyzeMarks()">
+            Analyze Marks
+        </button>
+
+        <p id="marksResult"></p>
+    </div>
+
+
+    <!-- Student Records -->
+    <div class="card">
+
+        <h2>Student Records App</h2>
+
+        <input type="text"
+               id="studentName"
+               placeholder="Enter student name">
+
+        <input type="number"
+               id="studentMarks"
+               placeholder="Enter marks">
+
+        <button onclick="addStudent()">
+            Add Student
+        </button>
+
+        <ul id="studentList"></ul>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
