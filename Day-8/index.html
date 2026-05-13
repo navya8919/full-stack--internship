@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async JavaScript Assignments</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>Async JavaScript Assignments</h1>
+
+    <!-- Fetch Posts -->
+    <div class="card">
+
+        <h2>Fetch First 5 Posts</h2>
+
+        <button onclick="fetchPosts()">
+            Fetch Posts
+        </button>
+
+        <ul id="postList"></ul>
+
+    </div>
+
+
+    <!-- Simulate Downloads -->
+    <div class="card">
+
+        <h2>Simulate File Downloads</h2>
+
+        <button onclick="downloadFiles()">
+            Start Downloads
+        </button>
+
+        <p id="downloadResult"></p>
+
+    </div>
+
+
+    <!-- Fake API Users -->
+    <div class="card">
+
+        <h2>Fetch Users</h2>
+
+        <button onclick="fetchUsers()">
+            Load Users
+        </button>
+
+        <div id="userContainer"></div>
+
+    </div>
+
+
+    <!-- Weather -->
+    <div class="card">
+
+        <h2>Weather Simulator</h2>
+
+        <input type="text"
+               id="cityInput"
+               placeholder="Enter city">
+
+        <button onclick="showWeather()">
+            Get Weather
+        </button>
+
+        <p id="weatherResult"></p>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
