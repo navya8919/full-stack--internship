@@ -1,0 +1,176 @@
+/* =========================
+   Global Styles
+========================= */
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: #f4f4f4;
+    transition: 0.4s;
+}
+
+/* =========================
+   Navigation
+========================= */
+
+nav {
+    background: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 30px;
+
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    margin: 0;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    color: #00c6ff;
+}
+
+/* =========================
+   Sections
+========================= */
+
+section {
+    padding: 70px 20px;
+    text-align: center;
+}
+
+#home {
+    background: linear-gradient(to right, #00c6ff, #0072ff);
+    color: white;
+}
+
+#projects ul {
+    list-style: none;
+    padding: 0;
+}
+
+#projects li {
+    background: white;
+    margin: 10px auto;
+    padding: 15px;
+    width: 50%;
+    border-radius: 10px;
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* =========================
+   Gallery
+========================= */
+
+.gallery-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.gallery-container img {
+    width: 250px;
+    height: 180px;
+    object-fit: cover;
+    margin: 10px;
+    border-radius: 10px;
+    transition: 0.3s;
+}
+
+.gallery-container img:hover {
+    transform: scale(1.05);
+}
+
+/* =========================
+   Form
+========================= */
+
+form {
+    width: 60%;
+    margin: auto;
+}
+
+input,
+textarea {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+}
+
+button {
+    padding: 10px 18px;
+    border: none;
+    background: #0072ff;
+    color: white;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background: #005edb;
+}
+
+/* =========================
+   Dark Mode
+========================= */
+
+.dark-mode {
+    background: #121212;
+    color: white;
+}
+
+.dark-mode nav {
+    background: #000;
+}
+
+.dark-mode #projects li {
+    background: #222;
+    color: white;
+}
+
+/* =========================
+   Responsive
+========================= */
+
+@media (max-width: 768px) {
+
+    nav {
+        flex-direction: column;
+    }
+
+    nav ul {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    #projects li {
+        width: 90%;
+    }
+
+    form {
+        width: 90%;
+    }
+}

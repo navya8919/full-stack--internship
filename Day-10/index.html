@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Portfolio</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- ========================= -->
+    <!-- Navigation -->
+    <!-- ========================= -->
+
+    <nav>
+
+        <h2 class="logo">Portfolio</h2>
+
+        <ul>
+
+            <li><a href="#home">Home</a></li>
+
+            <li><a href="#about">About</a></li>
+
+            <li><a href="#projects">Projects</a></li>
+
+            <li><a href="#gallery">Gallery</a></li>
+
+            <li><a href="#contact">Contact</a></li>
+
+        </ul>
+
+        <button id="darkModeBtn">
+            🌙 Dark Mode
+        </button>
+
+    </nav>
+
+
+    <!-- ========================= -->
+    <!-- Home -->
+    <!-- ========================= -->
+
+    <section id="home">
+
+        <h1>Welcome to My Portfolio</h1>
+
+        <p>I am a Full Stack Developer trainee.</p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- About -->
+    <!-- ========================= -->
+
+    <section id="about">
+
+        <h2>About Me</h2>
+
+        <p>
+            Passionate about building websites using
+            HTML, CSS, and JavaScript.
+        </p>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Projects -->
+    <!-- ========================= -->
+
+    <section id="projects">
+
+        <h2>Projects</h2>
+
+        <ul id="project-list"></ul>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Image Gallery -->
+    <!-- ========================= -->
+
+    <section id="gallery">
+
+        <h2>Image Gallery</h2>
+
+        <div class="gallery-container">
+
+            <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300" alt="Nature">
+
+            <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?w=300" alt="Forest">
+
+            <img src="https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300" alt="Beach">
+
+            <img src="https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=300" alt="Waterfall">
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================= -->
+    <!-- Contact -->
+    <!-- ========================= -->
+
+    <section id="contact">
+
+        <h2>Contact Me</h2>
+
+        <form id="contactForm">
+
+            <input type="text" id="name" placeholder="Your Name">
+
+            <input type="email" id="email" placeholder="Your Email">
+
+            <input type="text" id="phone" placeholder="Phone Number">
+
+            <textarea id="message" placeholder="Your Message"></textarea>
+
+            <button type="submit">
+                Send
+            </button>
+
+        </form>
+
+        <p id="formMessage"></p>
+
+    </section>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>
