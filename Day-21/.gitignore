@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+
+# Local Environment Variables
+.env
+
+# Local fallback database logs & stores
+backend/data/db.json
+*.log
+
+# Editor configurations
+.vscode/
+.idea/
+.DS_Store

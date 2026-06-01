@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aetheria | Immersive Publishing & Blogging Platform</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Core stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Reading Progress Bar -->
+  <div id="reading-progress" class="reading-progress-bar"></div>
+
+  <!-- Ambient background glow particles -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <!-- Header Section -->
+  <header class="main-header">
+    <div class="header-container">
+      <a href="#" class="logo" id="nav-logo">
+        <span class="logo-accent">Ae</span>theria
+      </a>
+
+      <!-- Main Navigation Menu -->
+      <nav class="nav-menu" id="nav-menu">
+        <a href="#" class="nav-link active" data-view="feed"><i class="fa-solid fa-house"></i> Feed</a>
+        <!-- Auth Dependent Actions -->
+        <span id="auth-nav-items" class="hidden">
+          <a href="#" class="nav-link" data-view="dashboard"><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+          <a href="#" class="nav-link" data-view="editor" id="btn-nav-write"><i class="fa-solid fa-pen-nib"></i> Write</a>
+        </span>
+      </nav>
+
+      <!-- Account Actions Area -->
+      <div class="account-actions">
+        <!-- Unauthenticated Guest -->
+        <div id="guest-actions" class="actions-group">
+          <button class="btn btn-secondary btn-sm" id="btn-login-modal">Log In</button>
+          <button class="btn btn-primary btn-sm" id="btn-signup-modal">Sign Up</button>
+        </div>
+
+        <!-- Authenticated User -->
+        <div id="user-actions" class="actions-group hidden">
+          <div class="user-profile-widget" id="user-menu-trigger">
+            <span class="user-name" id="user-display-name">Username</span>
+            <img src="" alt="Avatar" class="user-avatar" id="user-display-avatar">
+            <i class="fa-solid fa-chevron-down dropdown-arrow"></i>
+            <!-- Dropdown Menu -->
+            <div class="profile-dropdown" id="profile-dropdown">
+              <a href="#" class="dropdown-item" id="btn-dropdown-dashboard"><i class="fa-solid fa-grid-2-plus"></i> Dashboard</a>
+              <a href="#" class="dropdown-item" id="btn-dropdown-write"><i class="fa-solid fa-pen-to-square"></i> New Post</a>
+              <hr class="dropdown-divider">
+              <a href="#" class="dropdown-item danger" id="btn-logout"><i class="fa-solid fa-right-from-bracket"></i> Log Out</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button class="mobile-nav-toggle" id="mobile-toggle" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main View Frame -->
+  <main class="app-container">
+
+    <!-- VIEW 1: BLOGS FEED VIEW -->
+    <section id="view-feed" class="app-view active">
+      <!-- Hero/Welcome Jumbotron -->
+      <div class="hero-banner">
+        <h1 class="hero-title">Discover stories, thinking, and expertise from writers.</h1>
+        <p class="hero-subtitle">Express your creativity, share deep technical guides, and connect with devs worldwide.</p>
+        <div class="hero-search-wrapper">
+          <div class="search-bar">
+            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            <input type="text" id="search-input" placeholder="Search articles by title, content or author...">
+            <button class="btn btn-primary" id="btn-search">Search</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs & Tags -->
+      <div class="filter-row">
+        <div class="filter-tabs">
+          <button class="tab-btn active" data-tag="">All Articles</button>
+          <button class="tab-btn" data-tag="javascript">JavaScript</button>
+          <button class="tab-btn" data-tag="design">Design</button>
+          <button class="tab-btn" data-tag="css">CSS</button>
+          <button class="tab-btn" data-tag="mongodb">Database</button>
+        </div>
+        <div class="active-filters hidden" id="active-tag-indicator">
+          <span>Active Tag: <strong id="current-filtered-tag">None</strong></span>
+          <button class="btn-clear-tag" id="btn-clear-tag"><i class="fa-solid fa-xmark"></i></button>
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div id="feed-loading" class="spinner-container">
+        <div class="spinner"></div>
+        <p>Fetching beautiful stories...</p>
+      </div>
+
+      <!-- Empty State -->
+      <div id="feed-empty" class="empty-state hidden">
+        <i class="fa-regular fa-folder-open empty-icon"></i>
+        <h3>No articles found</h3>
+        <p>We couldn't find any articles matching your search or tag. Be the first to publish one!</p>
+        <button class="btn btn-primary" id="btn-empty-write">Create Post</button>
+      </div>
+
+      <!-- Blogs Grid -->
+      <div id="posts-grid" class="posts-grid">
+        <!-- Cards injected dynamically via app.js -->
+      </div>
+    </section>
+
+    <!-- VIEW 2: POST READING DETAILED VIEW -->
+    <section id="view-read" class="app-view">
+      <div class="read-container">
+        <div class="back-navigation">
+          <button class="btn-back" id="btn-read-back"><i class="fa-solid fa-arrow-left"></i> Back to feed</button>
+          <div class="reading-meta-badge">
+            <span id="read-post-date">June 1, 2026</span>
+          </div>
+        </div>
+
+        <article class="full-article">
+          <!-- Cover Image Frame -->
+          <div class="article-cover-frame">
+            <img src="" alt="Blog Cover" id="read-cover-image" class="article-cover">
+          </div>
+
+          <!-- Header & Title -->
+          <header class="article-header">
+            <div class="article-tags" id="read-tags">
+              <!-- Tags injected dynamic -->
+            </div>
+            <h1 class="article-title" id="read-title">Article Title Placeholder</h1>
+
+            <!-- Author details -->
+            <div class="article-author-card">
+              <img src="" alt="Author avatar" class="author-avatar" id="read-author-avatar">
+              <div class="author-meta">
+                <span class="author-name" id="read-author-name">Author Name</span>
+                <span class="author-subtext" id="read-author-email">author@example.com</span>
+              </div>
+              <div class="article-action-buttons hidden" id="read-owner-actions">
+                <button class="btn btn-icon btn-edit-post" id="btn-read-edit" title="Edit Post"><i class="fa-solid fa-pen-to-square"></i> Edit</button>
+                <button class="btn btn-icon danger btn-delete-post" id="btn-read-delete" title="Delete Post"><i class="fa-solid fa-trash-can"></i> Delete</button>
+              </div>
+            </div>
+          </header>
+
+          <!-- Rich Content Area -->
+          <div class="article-body markdown-content" id="read-content">
+            <!-- Content injected dynamic -->
+          </div>
+        </article>
+
+        <!-- Divider -->
+        <hr class="section-divider">
+
+        <!-- Comments Core Interface -->
+        <section class="comments-section">
+          <h2 class="comments-title"><i class="fa-regular fa-comments"></i> Discussion (<span id="comments-count">0</span>)</h2>
+
+          <!-- Add Comment Box -->
+          <div class="comment-input-box">
+            <!-- Unauthenticated block -->
+            <div class="comment-auth-fallback" id="comment-auth-fallback">
+              <p>Join the conversation! Please <a href="#" id="link-comment-login">log in</a> or <a href="#" id="link-comment-signup">sign up</a> to write a comment.</p>
+            </div>
+            <!-- Authenticated form -->
+            <form id="comment-form" class="comment-form hidden">
+              <div class="comment-textarea-wrapper">
+                <img src="" alt="Your avatar" class="user-avatar" id="comment-user-avatar">
+                <textarea id="comment-textarea" placeholder="Share your insights, ask a question, or leave feedback..." required></textarea>
+              </div>
+              <div class="comment-form-actions">
+                <button type="submit" class="btn btn-primary" id="btn-submit-comment">Post Comment</button>
+              </div>
+            </form>
+          </div>
+
+          <!-- Comments Feed -->
+          <div id="comments-list" class="comments-list">
+            <!-- Comments injected dynamically -->
+          </div>
+        </section>
+      </div>
+    </section>
+
+    <!-- VIEW 3: BLOG WRITING/EDITING CANVAS -->
+    <section id="view-editor" class="app-view">
+      <div class="editor-container">
+        <header class="editor-header">
+          <h1 id="editor-view-title"><i class="fa-solid fa-feather"></i> Craft New Article</h1>
+          <p class="editor-sub">Write in Markdown to design custom headings, codes, and stylized quotes.</p>
+        </header>
+
+        <form id="editor-form" class="editor-grid">
+          <!-- Left: Drafting panel -->
+          <div class="editor-pane inputs-pane">
+            <div class="form-group">
+              <label for="edit-title">Article Title</label>
+              <input type="text" id="edit-title" placeholder="Give your story an awesome title..." maxlength="100" required>
+            </div>
+
+            <div class="form-group">
+              <label for="edit-summary">Brief Summary</label>
+              <textarea id="edit-summary" rows="2" placeholder="Write a short teaser summary for post previews (max 250 chars)..." maxlength="250" required></textarea>
+            </div>
+
+            <div class="form-group-row">
+              <div class="form-group">
+                <label for="edit-tags">Tags (comma-separated)</label>
+                <input type="text" id="edit-tags" placeholder="e.g. javascript, coding, tutorials">
+              </div>
+              <div class="form-group">
+                <label for="edit-cover">Cover Image URL</label>
+                <input type="url" id="edit-cover" placeholder="Paste Unsplash or static image link...">
+              </div>
+            </div>
+
+            <div class="form-group editor-content-group">
+              <div class="content-header-row">
+                <label for="edit-content">Content (Markdown supported)</label>
+                <div class="editor-hints">
+                  <span><code># Heading</code></span>
+                  <span><code>**bold**</code></span>
+                  <span><code>\`code\`</code></span>
+                </div>
+              </div>
+              <textarea id="edit-content" placeholder="Once upon a time... Write your full story here using Markdown markdown rules." required></textarea>
+            </div>
+
+            <div class="editor-action-row">
+              <button type="button" class="btn btn-secondary" id="btn-editor-cancel">Cancel</button>
+              <button type="submit" class="btn btn-primary" id="btn-editor-submit">Publish Article</button>
+            </div>
+          </div>
+
+          <!-- Right: Live Preview Panel -->
+          <div class="editor-pane preview-pane">
+            <div class="preview-header">
+              <span><i class="fa-regular fa-eye"></i> Live Refined Preview</span>
+              <span class="preview-tag">Auto-updating</span>
+            </div>
+            <div class="preview-content-box">
+              <div class="preview-cover-box" id="preview-cover-box">
+                <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=1200&q=80" alt="Preview Cover" id="preview-cover-img">
+              </div>
+              <h1 class="preview-title" id="preview-title-render">Your Title Will Appear Here</h1>
+              <div class="preview-tags" id="preview-tags-render"></div>
+              <hr class="preview-divider">
+              <div class="preview-body-render markdown-content" id="preview-content-render">
+                <p class="preview-placeholder-text">Start writing your story in the editor pane to preview it rendered in realtime.</p>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- VIEW 4: REGISTERED USER DASHBOARD -->
+    <section id="view-dashboard" class="app-view">
+      <div class="dashboard-container">
+        <header class="dashboard-header">
+          <div class="dashboard-header-text">
+            <h1><i class="fa-solid fa-columns"></i> Publisher Dashboard</h1>
+            <p>Welcome back, <strong id="dashboard-username">Writer</strong>. Manage, modify, or delete your publications.</p>
+          </div>
+          <button class="btn btn-primary" id="btn-dashboard-write"><i class="fa-solid fa-plus"></i> Write Article</button>
+        </header>
+
+        <!-- Stats Overview Cards -->
+        <div class="dashboard-stats">
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-regular fa-newspaper"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Articles</span>
+              <span class="stat-value" id="stat-posts-count">0</span>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-regular fa-comments"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Total Comments</span>
+              <span class="stat-value" id="stat-comments-count">0</span>
+            </div>
+          </div>
+          <div class="stat-card glass-panel">
+            <div class="stat-icon"><i class="fa-solid fa-award"></i></div>
+            <div class="stat-info">
+              <span class="stat-label">Member Rank</span>
+              <span class="stat-value">Elite Writer</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dashboard-content glass-panel">
+          <div class="dashboard-content-header">
+            <h3>Your Published Stories</h3>
+            <div class="dashboard-search">
+              <i class="fa-solid fa-magnifying-glass search-mini-icon"></i>
+              <input type="text" id="dashboard-search-input" placeholder="Search your articles...">
+            </div>
+          </div>
+
+          <!-- Loading state for dashboard -->
+          <div id="dashboard-loading" class="spinner-container">
+            <div class="spinner"></div>
+            <p>Loading your catalog...</p>
+          </div>
+
+          <!-- Empty list state -->
+          <div id="dashboard-empty" class="dashboard-empty-state hidden">
+            <i class="fa-solid fa-file-pen empty-icon"></i>
+            <h4>No publications yet</h4>
+            <p>You haven't written any stories yet. Click the "Write Article" button to begin your publishing journey!</p>
+          </div>
+
+          <!-- Dashboard articles table layout -->
+          <div class="table-responsive" id="dashboard-table-container">
+            <table class="dashboard-table">
+              <thead>
+                <tr>
+                  <th>Article Detail</th>
+                  <th>Tags</th>
+                  <th>Published Date</th>
+                  <th class="text-right">Actions</th>
+                </tr>
+              </thead>
+              <tbody id="dashboard-posts-list">
+                <!-- User's articles injected dynamically via app.js -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- AUTHENTICATION DIALOG / OVERLAY MODAL -->
+  <div class="modal-overlay" id="auth-modal">
+    <div class="modal-card glass-panel">
+      <!-- Close Button -->
+      <button class="modal-close" id="btn-close-auth"><i class="fa-solid fa-xmark"></i></button>
+
+      <!-- Modal Tabs header -->
+      <div class="modal-tabs">
+        <button class="modal-tab-btn active" id="tab-login-trigger">Log In</button>
+        <button class="modal-tab-btn" id="tab-signup-trigger">Create Account</button>
+      </div>
+
+      <!-- Dynamic forms container -->
+      <div class="modal-forms-wrapper">
+        <!-- LOGIN FORM -->
+        <form id="login-form" class="modal-form active">
+          <div class="modal-form-intro">
+            <h2>Welcome Back</h2>
+            <p>Enter your credentials to manage your publications and comment on articles.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="login-email">Email or Username</label>
+            <div class="input-with-icon">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="text" id="login-email" placeholder="you@example.com" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="login-password">Password</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="login-password" placeholder="••••••••" required autocomplete="current-password">
+            </div>
+          </div>
+
+          <div id="login-error-msg" class="form-error hidden">Invalid credentials. Please try again.</div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-loading-ready" id="btn-submit-login">
+            <span class="btn-text">Sign In</span>
+            <span class="spinner-sm hidden"></span>
+          </button>
+        </form>
+
+        <!-- SIGNUP FORM -->
+        <form id="signup-form" class="modal-form">
+          <div class="modal-form-intro">
+            <h2>Start Publishing</h2>
+            <p>Join our thriving community of writers and share your insights with the tech world.</p>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-username">Username</label>
+            <div class="input-with-icon">
+              <i class="fa-regular fa-user"></i>
+              <input type="text" id="signup-username" placeholder="johndoe_dev" minlength="3" required autocomplete="username">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-email">Email Address</label>
+            <div class="input-with-icon">
+              <i class="fa-regular fa-envelope"></i>
+              <input type="email" id="signup-email" placeholder="john@example.com" required autocomplete="email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="signup-password">Password (min 6 characters)</label>
+            <div class="input-with-icon">
+              <i class="fa-solid fa-lock"></i>
+              <input type="password" id="signup-password" placeholder="••••••••" minlength="6" required autocomplete="new-password">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Choose Avatar Style</label>
+            <div class="avatar-selectors">
+              <div class="avatar-option selected" data-seed="cyber">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=cyber" alt="Cyber Bot">
+              </div>
+              <div class="avatar-option" data-seed="nebula">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=nebula" alt="Nebula Bot">
+              </div>
+              <div class="avatar-option" data-seed="matrix">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=matrix" alt="Matrix Bot">
+              </div>
+              <div class="avatar-option" data-seed="stardust">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=stardust" alt="Stardust Bot">
+              </div>
+              <div class="avatar-option" data-seed="aurora">
+                <img src="https://api.dicebear.com/7.x/bottts/svg?seed=aurora" alt="Aurora Bot">
+              </div>
+            </div>
+          </div>
+
+          <div id="signup-error-msg" class="form-error hidden">Failed to register. Username or email may exist.</div>
+
+          <button type="submit" class="btn btn-primary btn-block btn-loading-ready" id="btn-submit-signup">
+            <span class="btn-text">Create Account</span>
+            <span class="spinner-sm hidden"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- TOAST ALERTS CONTAINER -->
+  <div class="toast-container" id="toast-container">
+    <!-- Toasts injected dynamically via JS -->
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div class="footer-brand">
+        <span class="brand-name"><span class="logo-accent">Ae</span>theria</span>
+        <p>A high-end responsive publishing ecosystem designed for authors, developers, and tech thinkers.</p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-col">
+          <h4>Platform</h4>
+          <a href="#">Explore</a>
+          <a href="#">Guidelines</a>
+          <a href="#">Features</a>
+        </div>
+        <div class="footer-col">
+          <h4>Privacy & Terms</h4>
+          <a href="#">Terms of Use</a>
+          <a href="#">Privacy Policy</a>
+          <a href="#">Cookie settings</a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Aetheria. All rights reserved. Created with absolute visual premium aesthetics.</p>
+    </div>
+  </footer>
+
+  <!-- Application core logic -->
+  <script src="app.js"></script>
+</body>
+</html>
